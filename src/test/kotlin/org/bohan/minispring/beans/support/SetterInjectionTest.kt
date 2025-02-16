@@ -70,7 +70,7 @@ class SetterInjectionTest {
     /**
      * 用于测试的 Service 类
      */
-    class SimpleService() {
+    class SimpleService {
         fun sayHello(): String {
             return "Hello from service!"
         }
