@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory
 import java.beans.PropertyDescriptor
 import java.util.concurrent.ConcurrentHashMap
 
-class DefaultListableBeanFactory: SimpleAliasRegistry(), BeanFactory {
+open class DefaultListableBeanFactory: SimpleAliasRegistry(), BeanFactory {
 
     private val logger = LoggerFactory.getLogger(DefaultListableBeanFactory::class.java)
     /** 存储单例 Bean 的容器 */
@@ -141,14 +141,14 @@ class DefaultListableBeanFactory: SimpleAliasRegistry(), BeanFactory {
                     writeMethod?.invoke(bean, value)
                     logger.debug("Injected property '{}' of bean '{}'", propertyName, name)
                 }
+            }
 
-                // 调用初始化方法
-                val initMethodName = beanDefinition.getInitMethodName()
-                if (! initMethodName.isNullOrBlank()) {
-                    val initMethod = beanClass.getMethod(initMethodName)
-                    initMethod.invoke(bean)
-                    logger.debug("Invoked init-method '{}' of bean '{}'", initMethodName, name);
-                }
+            // 调用初始化方法
+            val initMethodName = beanDefinition.getInitMethodName()
+            if (! initMethodName.isNullOrBlank()) {
+                val initMethod = beanClass.getMethod(initMethodName)
+                initMethod.invoke(bean)
+                logger.debug("Invoked init-method '{}' of bean '{}'", initMethodName, name);
             }
         } catch (e: Exception) {
             throw BeansException("Error creating bean with name '$name'", e)

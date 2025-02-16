@@ -3,14 +3,14 @@ package org.bohan.minispring.beans.factory.support
 import org.bohan.minispring.beans.factory.config.BeanDefinition
 
 class GenericBeanDefinition(
-    private val beanClass: Class<Any>
+    private val beanClass: Class<*>
 ): BeanDefinition {
 
     private var scope = BeanDefinition.SCOPE_SINGLETON
     private var initMethod: String? = null
     private var destroyMethod: String? = null
 
-    override fun getBeanClass(): Class<Any> {
+    override fun getBeanClass(): Class<*> {
         return beanClass
     }
 

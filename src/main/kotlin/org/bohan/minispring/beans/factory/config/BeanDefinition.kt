@@ -17,7 +17,7 @@ interface BeanDefinition {
      *
      * @return Bean的Class对象
      */
-    fun getBeanClass(): Class<Any>
+    fun getBeanClass(): Class<*>
 
     /**
      * 获取Bean的作用域
