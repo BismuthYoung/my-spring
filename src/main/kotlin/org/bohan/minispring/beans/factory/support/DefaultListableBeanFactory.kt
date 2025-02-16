@@ -107,7 +107,7 @@ open class DefaultListableBeanFactory: SimpleAliasRegistry(), BeanFactory {
             // 处理构造器注入
             val constructorArgs = beanDefinitionHolder.getConstructorArgumentValues()
             if (constructorArgs.isNotEmpty()) {
-                val parameterTypes = arrayOfNulls<Class<Any>>(constructorArgs.size)
+                val parameterTypes = arrayOfNulls<Class<*>>(constructorArgs.size)
                 val parameterValues = arrayOfNulls<Any>(constructorArgs.size)
 
                 for (i in constructorArgs.indices) {
