@@ -5,7 +5,7 @@ package org.bohan.minispring.beans
  *
  * @author Bohan
  */
-class BeansException : RuntimeException {
+open class BeansException : RuntimeException {
 
     companion object {
         private const val serialVersionUID = 1L
