@@ -130,7 +130,7 @@ open class DefaultListableBeanFactory: SimpleAliasRegistry(), BeanFactory {
     protected fun createBean(name: String, beanDefinitionHolder: BeanDefinitionHolder): Any {
         val beanDefinition = beanDefinitionHolder.getBeanDefinition()
         val beanClass = beanDefinition.getBeanClass()
-        var bean: Any
+        val bean: Any
 
         try {
             // 处理构造器注入
@@ -188,7 +188,7 @@ open class DefaultListableBeanFactory: SimpleAliasRegistry(), BeanFactory {
             if (! initMethodName.isNullOrBlank()) {
                 val initMethod = beanClass.getMethod(initMethodName)
                 initMethod.invoke(bean)
-                logger.debug("Invoked init-method '{}' of bean '{}'", initMethodName, name);
+                logger.debug("Invoked init-method '{}' of bean '{}'", initMethodName, name)
             }
         } catch (e: Exception) {
             throw BeansException("Error creating bean with name '$name'", e)
@@ -237,7 +237,7 @@ open class DefaultListableBeanFactory: SimpleAliasRegistry(), BeanFactory {
                     try {
                         val destroyMethod = bean.javaClass.getMethod(destroyMethodName)
                         destroyMethod.invoke(bean)
-                        logger.debug("Invoked destroy-method '{}' of bean '{}'", destroyMethodName, beanName);
+                        logger.debug("Invoked destroy-method '{}' of bean '{}'", destroyMethodName, beanName)
                     } catch (e: Exception) {
                         logger.error("Error invoking destroy-method '{}' of bean '{}'", destroyMethodName, beanName, e)
                     }
