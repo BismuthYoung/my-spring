@@ -8,7 +8,7 @@ import org.bohan.minispring.beans.BeansException
  *
  * @author Bohan
  */
-interface ObjectConverter {
+interface ObjectFactory<T> {
 
     /**
      * 获取对象实例
@@ -17,6 +17,6 @@ interface ObjectConverter {
      * @throws BeansException 如果创建对象失败
      */
     @Throws(BeansException::class)
-    fun <T> getObject(): T
+    fun getObject(): T
 
 }
