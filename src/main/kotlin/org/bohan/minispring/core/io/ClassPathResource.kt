@@ -52,28 +52,28 @@ class ClassPathResource: Resource {
         this.classLoader = null
     }
 
+    @Throws(IOException::class)
     override fun getInputStream(): InputStream {
-        val `is`: InputStream?
-        if (clazz != null) {
-            var pathToUse = path
-            if (! path.startsWith("/")) {
-                pathToUse = "/$pathToUse"
+        val `is`: InputStream = when {
+            clazz != null -> {
+                var pathToUse = path
+                if (!pathToUse.startsWith("/")) {
+                    pathToUse = "/$pathToUse"
+                }
+                clazz.getResourceAsStream(pathToUse)
             }
-            `is` = clazz.getResourceAsStream(path)
-        } else if (classLoader != null) {
-            `is` = classLoader.getResourceAsStream(path)
-        } else {
-            `is` = ClassLoader.getSystemClassLoader().getResourceAsStream(path)
-        }
-
-        if (`is` == null) {
-            throw FileNotFoundException("${getDescription()} cannot be opened because it does not exist")
-        }
+            classLoader != null -> {
+                classLoader.getResourceAsStream(path)
+            }
+            else -> {
+                ClassLoader.getSystemResourceAsStream(path)
+            }
+        } ?: throw FileNotFoundException("${getDescription()} cannot be opened because it does not exist")
 
         logger.debug("Opened InputStream for {}", getDescription())
-
         return `is`
     }
+
 
     override fun exists(): Boolean {
         return getUrl() != null

@@ -93,4 +93,8 @@ class FileSystemResource(
             FileSystemResource(relativePath)
         }
     }
+
+    fun getFile(): File {
+        return file
+    }
 }

@@ -99,4 +99,14 @@ class UrlResource(
         return UrlResource(URL(url, relativePath))
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is UrlResource) return false
+        return url == other.url
+    }
+
+    override fun hashCode(): Int {
+        return url.hashCode()
+    }
+
 }
