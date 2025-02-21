@@ -1,0 +1,50 @@
+package org.bohan.minispring.beans.factory.config
+
+/**
+ * 单例bean注册表接口
+ * 定义了管理单例bean的基本操作
+ *
+ * @author Bohan
+ *
+ */
+interface SingletonBeanRegistry {
+
+    /**
+     * 注册一个单例bean
+     *
+     * @param beanName bean名称
+     * @param singletonObject bean实例
+     */
+    fun registerSingleton(beanName: String, singletonObject: Any)
+
+    /**
+     * 获取单例bean
+     *
+     * @param beanName bean名称
+     * @return bean实例，如果不存在返回null
+     */
+    fun getSingleton(beanName: String): Any?
+
+    /**
+     * 判断是否包含指定名称的单例bean
+     *
+     * @param beanName bean名称
+     * @return 如果包含返回true，否则返回false
+     */
+    fun containsSingleton(beanName: String): Boolean
+
+    /**
+     * 获取所有单例bean的名称
+     *
+     * @return 单例bean名称数组
+     */
+    fun getSingletonNames(): Array<String>
+
+    /**
+     * 获取单例bean的数量
+     *
+     * @return 单例bean的数量
+     */
+    fun getSingletonCount(): Int
+
+}

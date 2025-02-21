@@ -9,7 +9,7 @@ package org.bohan.minispring.beans.factory.config
  * @property name 该成员变量的名称
  */
 data class ConstructorArgumentValue(
-    val value: Any,
+    val value: Any?,
     val type: Class<*>,
-    val name: String
+    val name: String?
 )

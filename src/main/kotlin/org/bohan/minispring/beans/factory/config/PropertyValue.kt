@@ -10,6 +10,8 @@ package org.bohan.minispring.beans.factory.config
  */
 data class PropertyValue(
     val name: String,
-    val value: Any,
+    val value: Any?,
     val type: Class<*>
-)
+) {
+    constructor(name: String, value: Any): this(name, value, value.javaClass)
+}

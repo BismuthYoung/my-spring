@@ -3,7 +3,7 @@ package org.bohan.minispring.beans.factory
 import org.bohan.minispring.beans.BeansException
 
 /**
- * Bean工厂接口，定义IoC容器的基本功能
+ * Bean工厂接口，定义IoC容器的基本功能，即定义获取bean的基本方法
  *
  * @author Bohan
  */
@@ -67,5 +67,15 @@ interface BeanFactory {
      */
     @Throws(BeansException::class)
     fun isPrototype(name: String): Boolean
+
+    /**
+     * 获取指定名称bean的类型
+     *
+     * @param name bean名称
+     * @return bean的类型，如果不存在返回null
+     * @throws BeansException 如果无法获取bean的类型
+     */
+    @Throws(BeansException::class)
+    fun getType(name: String): Class<*>?
 
 }

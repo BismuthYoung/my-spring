@@ -7,12 +7,14 @@ package org.bohan.minispring.beans.factory.config
  */
 class BeanDefinitionHolder(
     private val beanDefinition: BeanDefinition,
-    private val beanName: String
+    private val beanName: String,
 ) {
 
-    private val constructorArgumentValues = mutableListOf<ConstructorArgumentValue>()
-    private val propertyValues = mutableListOf<PropertyValue>()
+    private var aliases: Array<String>? = null
 
+    constructor(beanDefinition: BeanDefinition, beanName: String, aliases: Array<String>) : this(beanDefinition, beanName) {
+        this.aliases = aliases
+    }
 
     /**
      * 获取 BeanDefinition
@@ -24,28 +26,5 @@ class BeanDefinitionHolder(
      */
     fun getBeanName(): String = this.beanName
 
-    /**
-     * 添加构造函数参数值
-     */
-    fun addConstructorArgumentValue(argumentValue: ConstructorArgumentValue) {
-        this.constructorArgumentValues.add(argumentValue)
-    }
-
-    /**
-     * 获取构造函数参数值列表
-     */
-    fun getConstructorArgumentValues(): List<ConstructorArgumentValue> = ArrayList(this.constructorArgumentValues)
-
-    /**
-     * 添加属性值
-     */
-    fun addPropertyValue(propertyValue: PropertyValue) {
-        this.propertyValues.add(propertyValue)
-    }
-
-    /**
-     * 获取属性值列表
-     */
-    fun getPropertyValues(): List<PropertyValue> = ArrayList(this.propertyValues)
 
 }

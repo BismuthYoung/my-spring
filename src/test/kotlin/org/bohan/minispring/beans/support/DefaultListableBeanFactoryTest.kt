@@ -86,7 +86,7 @@ class DefaultListableBeanFactoryTest {
         assertSame(bean2, originalBean)
 
         // 测试获取别名
-        val aliases = beanFactory.getAlias("testBean")
+        val aliases = beanFactory.getAliases("testBean")
         assertEquals(2, aliases.size)
         assertTrue(containsAll(aliases, "alias1", "alias2"))
 

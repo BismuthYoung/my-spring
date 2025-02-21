@@ -7,10 +7,6 @@ package org.bohan.minispring.beans
  */
 open class BeansException : RuntimeException {
 
-    companion object {
-        private const val serialVersionUID = 1L
-    }
-
     /**
      * 创建一个空的BeansException
      */
@@ -22,8 +18,6 @@ open class BeansException : RuntimeException {
      * @param message 错误信息
      */
     constructor(message: String): super(message)
-
-
 
     /**
      * 创建一个带有错误信息和原因的BeansException

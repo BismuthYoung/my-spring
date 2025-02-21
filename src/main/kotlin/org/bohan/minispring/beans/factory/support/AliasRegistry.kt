@@ -34,6 +34,6 @@ interface AliasRegistry {
      * @param name bean的名称
      * @return 别名数组
      */
-    fun getAlias(name: String): Array<String>
+    fun getAliases(name: String): Array<String>
 
 }

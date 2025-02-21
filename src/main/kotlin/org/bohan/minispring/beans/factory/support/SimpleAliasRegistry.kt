@@ -48,7 +48,7 @@ open class SimpleAliasRegistry: AliasRegistry {
         return aliasMap.containsKey(alias)
     }
 
-    override fun getAlias(name: String): Array<String> {
+    override fun getAliases(name: String): Array<String> {
         val alias = mutableListOf<String>()
         aliasMap.entries.forEach { entry ->
             if (entry.value == name) {
