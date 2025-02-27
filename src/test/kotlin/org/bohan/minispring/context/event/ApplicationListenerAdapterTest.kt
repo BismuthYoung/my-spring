@@ -54,7 +54,7 @@ class ApplicationListenerAdapterTest {
 
         // 测试相等性
         assertEquals(adapter, adapter2)
-        assertNotEquals(adapter, adapter)
+        assertNotEquals(adapter, adapter3)
 
         // 测试哈希码
         assertEquals(adapter.hashCode(), adapter2.hashCode())
@@ -64,12 +64,10 @@ class ApplicationListenerAdapterTest {
     /**
      * 测试用事件处理器
      */
-    class TestEventHandler {
+    class TestEventHandler// 无参构造方法，使用默认的 TestEvent
+        () {
         private var eventHandled = false
         private var lastHandledEvent: TestEvent? = null
-
-        // 无参构造方法，使用默认的 TestEvent
-        constructor() {}
 
         // 带参数的构造方法，接受一个 TestEvent
         fun handleEvent(event: TestEvent) {
