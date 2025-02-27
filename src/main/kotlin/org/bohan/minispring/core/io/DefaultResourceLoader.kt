@@ -8,7 +8,7 @@ import java.net.URL
 /**
  * ResourceLoader接口的默认实现, 可以加载类路径资源和URL资源
  */
-class DefaultResourceLoader: ResourceLoader {
+open class DefaultResourceLoader: ResourceLoader {
 
     private val logger = LoggerFactory.getLogger(DefaultResourceLoader::class.java)
 
