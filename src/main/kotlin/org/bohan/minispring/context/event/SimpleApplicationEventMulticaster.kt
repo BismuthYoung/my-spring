@@ -13,7 +13,7 @@ class SimpleApplicationEventMulticaster: ApplicationEventMulticaster {
 
     private val listeners = mutableSetOf<ApplicationListener<*>>()
 
-    private lateinit var taskExecutor: Executor
+    private var taskExecutor: Executor? = null
 
     override fun addApplicationListener(listener: ApplicationListener<*>) {
         synchronized(this.listeners) {
@@ -37,7 +37,7 @@ class SimpleApplicationEventMulticaster: ApplicationEventMulticaster {
     }
 
     override fun multicastEvent(event: ApplicationEvent) {
-        listeners.forEach { listener ->
+        getApplicationListeners(event).forEach { listener ->
             val executor = getExecutor()
             if (executor != null) {
                 executor.execute {
@@ -54,7 +54,7 @@ class SimpleApplicationEventMulticaster: ApplicationEventMulticaster {
      *
      * @return 任务执行器
      */
-    protected fun getExecutor(): Executor? {
+    fun getExecutor(): Executor? {
         return this.taskExecutor
     }
 
@@ -63,7 +63,7 @@ class SimpleApplicationEventMulticaster: ApplicationEventMulticaster {
      *
      * @param taskExecutor 任务执行器
      */
-    protected fun setExecutor(taskExecutor: Executor) {
+    fun setExecutor(taskExecutor: Executor) {
         this.taskExecutor = taskExecutor
     }
 

@@ -23,7 +23,7 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")  // JUnit 5 API
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2") // JUnit 5 Engine
-    testImplementation("org.mockito:mockito-core:5.3.1")  // Mockito 用于模拟对象
+    testImplementation("org.mockito:mockito-core:5.0.0")  // Mockito 用于模拟对象
 }
 
 subprojects {

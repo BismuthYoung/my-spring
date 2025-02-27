@@ -18,7 +18,7 @@ class ApplicationListenerAdapter(
         method.isAccessible = true
     }
 
-    override fun <E> onApplicationEvent(event: E) {
+    override fun onApplicationEvent(event: ApplicationEvent) {
         if (eventType.isInstance(event)) {
             try {
                 method.invoke(target, event)

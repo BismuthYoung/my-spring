@@ -34,7 +34,7 @@ class ConstructorInjectionTest {
         // 添加构造器参数
         val controllerBeanDefinitionHolder =
             beanFactory.getBeanDefinitionHolder("controllerBean")
-        controllerBeanDefinitionHolder.addConstructorArgumentValue(
+        controllerBeanDefinition.addConstructorArgumentValue(
             ConstructorArgumentValue("serviceBean", SimpleService::class.java, "service")
         )
 

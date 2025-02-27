@@ -32,7 +32,7 @@ class SetterInjectionTest {
         // 添加属性值
         val controllerBeanDefinitionHolder =
             beanFactory.getBeanDefinitionHolder("controllerBean")
-        controllerBeanDefinitionHolder.addPropertyValue(
+        controllerBeanDefinition.addPropertyValue(
             PropertyValue("service", "serviceBean", SimpleService::class.java)
         )
 
@@ -56,7 +56,7 @@ class SetterInjectionTest {
         // 添加属性值
         val controllerBeanDefinitionHolder =
             beanFactory.getBeanDefinitionHolder("controllerBean")
-        controllerBeanDefinitionHolder.addPropertyValue(
+        controllerBeanDefinition.addPropertyValue(
             PropertyValue("name", "testName", String::class.java)
         )
 

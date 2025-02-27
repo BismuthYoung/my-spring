@@ -30,13 +30,13 @@ class CircularDependencyTest {
 
         // 设置CircularA依赖CircularB
         val beanDefinitionAHolder = beanFactory.getBeanDefinitionHolder("circularA")
-        beanDefinitionAHolder.addPropertyValue(
+        beanDefinitionA.addPropertyValue(
             PropertyValue("circularB", "circularB", CircularB::class.java)
         )
 
         // 设置CircularB依赖CircularA
         val beanDefinitionBHolder = beanFactory.getBeanDefinitionHolder("circularB")
-        beanDefinitionBHolder.addPropertyValue(
+        beanDefinitionB.addPropertyValue(
             PropertyValue("circularA", "circularA", CircularA::class.java)
         )
 

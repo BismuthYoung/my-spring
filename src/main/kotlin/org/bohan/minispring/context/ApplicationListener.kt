@@ -7,6 +7,6 @@ interface ApplicationListener<E: ApplicationEvent> {
      *
      * @param event 要处理的事件
      */
-    fun <E> onApplicationEvent(event: E)
+    fun onApplicationEvent(event: ApplicationEvent)
 
 }
