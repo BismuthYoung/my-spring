@@ -45,7 +45,7 @@ abstract class AbstractAutowireCapableBeanFactory: AbstractBeanFactory() {
                             // 如果值是字符串但需要的类型不是字符串，尝试获取引用的bean
                             val refBeanName = value.toString()
                             if (this is DefaultListableBeanFactory) {
-                                value = (this as DefaultListableBeanFactory).getSingleton(refBeanName, true)
+                                value = this.getSingleton(refBeanName, true)
                                 if (value == null) {
                                     value = getBean(refBeanName)
                                 }
@@ -80,7 +80,7 @@ abstract class AbstractAutowireCapableBeanFactory: AbstractBeanFactory() {
                     // 如果值是字符串但需要的类型不是字符串，尝试获取引用的bean
                     val refBeanName = value.toString()
                     if (this is DefaultListableBeanFactory) {
-                        value = (this as DefaultListableBeanFactory).getSingleton(refBeanName, true)
+                        value = this.getSingleton(refBeanName, true)
                         if (value == null) {
                             value = getBean(refBeanName)
                         }

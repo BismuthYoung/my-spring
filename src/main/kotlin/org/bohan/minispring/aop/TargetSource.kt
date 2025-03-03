@@ -9,6 +9,7 @@ package org.bohan.minispring.aop
 data class TargetSource(
     private val target: Any
 ) {
+
     /**
      * 获取目标对象的类型
      *

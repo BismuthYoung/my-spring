@@ -13,7 +13,7 @@ class CglibAopProxy(
     }
 
     override fun getProxy(classLoader: ClassLoader?): Any {
-        val rootClass = advised.targetSource?.javaClass ?: throw IllegalArgumentException("目标类不能为空")
+        val rootClass = advised.targetSource?.getTargetClass() ?: throw IllegalArgumentException("目标类不能为空")
 
         val enhancer = Enhancer()
         if (classLoader != null) {
