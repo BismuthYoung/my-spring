@@ -7,6 +7,10 @@ tasks.test {
     useJUnitPlatform() // 如果你使用 JUnit 5 测试框架
 }
 
+tasks.withType<JavaExec> {
+    jvmArgs("--add-opens", "java.base/sun.misc=ALL-UNNAMED")
+}
+
 allprojects {
     repositories {
         mavenCentral()
@@ -20,6 +24,7 @@ dependencies {
     implementation(kotlin("stdlib"))
     implementation("org.slf4j:slf4j-api:$slf4jVersion")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
+    implementation("cglib:cglib:3.3.0")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")  // JUnit 5 API
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2") // JUnit 5 Engine
