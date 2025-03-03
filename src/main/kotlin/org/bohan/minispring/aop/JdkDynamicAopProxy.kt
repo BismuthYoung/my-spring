@@ -24,7 +24,7 @@ class JdkDynamicAopProxy(
         return Proxy.newProxyInstance(classLoader, targetClass.interfaces, this)
     }
 
-    override fun invoke(proxy: Any, method: Method, args: Array<Any>): Any {
+    override fun invoke(proxy: Any, method: Method, args: Array<Any>): Any? {
         val target = advised.targetSource?.getTarget() ?: throw NullPointerException("target source is null")
 
         // 检查方法是否匹配切点表达式
@@ -33,11 +33,13 @@ class JdkDynamicAopProxy(
             return method.invoke(target, args)
         }
 
-        // 创建方法调用对象
-        val invocation = ReflectiveMethodInvocation(target, method, args)
+        // 创建拦截器链
+        val interceptors = advised.interceptors
 
-        // 执行拦截器链
-        val interceptor = advised.methodInterceptor ?: throw NullPointerException("interceptor is null")
-        return interceptor.invoke(invocation)
+        // 创建方法调用对象
+        val invocation = ReflectiveMethodInvocation(target, method, args, interceptors.toList())
+
+        // 执行方法调用链
+        return invocation.proceed()
     }
 }

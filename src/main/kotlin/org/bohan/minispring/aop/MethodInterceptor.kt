@@ -8,17 +8,16 @@ import kotlin.Throws
  *
  * @author Bohan
  */
-interface MethodInterceptor {
+interface MethodInterceptor: Advice {
 
     /**
-     * 执行方法拦截
-     * 在这个方法中实现对目标方法的增强
+     * 拦截方法调用
      *
      * @param invocation 方法调用
-     * @return 方法执行结果
+     * @return 方法返回值
      * @throws Throwable 执行异常
      */
     @Throws(Throwable::class)
-    fun invoke(invocation: MethodInvocation): Any
+    fun invoke(invocation: MethodInvocation): Any?
 
 }

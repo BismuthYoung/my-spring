@@ -25,6 +25,7 @@ dependencies {
     implementation("org.slf4j:slf4j-api:$slf4jVersion")
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
     implementation("cglib:cglib:3.3.0")
+    implementation("org.aspectj:aspectjweaver:1.9.19")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")  // JUnit 5 API
     testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2") // JUnit 5 Engine

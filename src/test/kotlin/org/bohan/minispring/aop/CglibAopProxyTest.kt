@@ -23,7 +23,7 @@ class CglibAopProxyTest {
     }
 
     class LoggingMethodInterceptor: MethodInterceptor {
-        override fun invoke(invocation: MethodInvocation): Any {
+        override fun invoke(invocation: MethodInvocation): Any? {
             println("Before method: ${invocation.getMethod()}")
             val result = invocation.proceed()
             println("After method: ${invocation.getMethod()}")
@@ -47,8 +47,8 @@ class CglibAopProxyTest {
         // 创建AOP配置
         val advisedSupport = AdvisedSupport()
         advisedSupport.targetSource = TargetSource(target)
-        advisedSupport.methodInterceptor = JdkDynamicAopProxyTest.LoggingMethodInterceptor()
-        advisedSupport.methodMatcher = JdkDynamicAopProxyTest.SimpleMethodMather()
+        advisedSupport.addMethodInterceptor(LoggingMethodInterceptor())
+        advisedSupport.methodMatcher = SimpleMethodMather()
 
         // 创建代理对象
         val proxy = CglibAopProxy(advisedSupport)

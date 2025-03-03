@@ -14,9 +14,13 @@ class AdvisedSupport {
     /** 目标对象 */
     var targetSource: TargetSource? = null
 
-    /** 方法拦截器 */
-    var methodInterceptor: MethodInterceptor? = null
+    /** 方法拦截器列表 */
+    val interceptors = mutableListOf<MethodInterceptor>()
 
     /** 方法匹配器(检查目标方法是否符合通知条件) */
     var methodMatcher: MethodMatcher? = null
+
+    fun addMethodInterceptor(methodInterceptor: MethodInterceptor){
+        this.interceptors.add(methodInterceptor)
+    }
 }

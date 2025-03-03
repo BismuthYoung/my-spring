@@ -20,7 +20,7 @@ class CglibAopProxy(
             enhancer.classLoader = classLoader
         }
         enhancer.setSuperclass(rootClass)
-        enhancer.setCallback(DynamicAdvisedInterceptor(advised))
+        enhancer.setCallback(CglibMethodInterceptor(advised))
 
         return enhancer.create()
     }
@@ -30,10 +30,10 @@ class CglibAopProxy(
          * CGLIB方法拦截器
          * 实现方法的拦截和增强
          */
-        class DynamicAdvisedInterceptor(
+        class CglibMethodInterceptor(
             private val advised: AdvisedSupport
         ): MethodInterceptor {
-            override fun intercept(obj: Any?, method: Method, args: Array<Any>, proxy: MethodProxy?): Any {
+            override fun intercept(obj: Any?, method: Method, args: Array<Any>, proxy: MethodProxy): Any {
                 val target = advised.targetSource?.getTarget() ?: throw NullPointerException("target source is null")
 
                 // 检查方法是否匹配切点表达式
@@ -42,12 +42,14 @@ class CglibAopProxy(
                     return method.invoke(target, args)
                 }
 
-                // 创建方法调用对象
-                val invocation = ReflectiveMethodInvocation(target, method, args)
+                // 创建拦截器链
+                val interceptors = advised.interceptors
 
-                // 执行拦截器链
-                val interceptor = advised.methodInterceptor ?: throw NullPointerException("interceptor is null")
-                return interceptor.invoke(invocation)
+                // 创建方法调用对象
+                val invocation = CglibMethodInvocation(target, method, args, proxy, interceptors.toList())
+
+                // 执行方法调用链
+                return invocation.proceed()
             }
 
         }

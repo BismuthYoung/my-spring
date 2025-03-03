@@ -32,6 +32,6 @@ interface MethodInvocation {
      * @throws Throwable 执行异常
      */
     @Throws(Throwable::class)
-    fun proceed(): Any
+    fun proceed(): Any?
 
 }
